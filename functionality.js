@@ -103,8 +103,11 @@ document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
             nonweekends.pop(removeableindex);
         });
 
-        var normalrate=parseFloat(document.getElementById('normalrateEntry').value);
-        var weekendrate=parseFloat(document.getElementById('weekendrateEntry').value);
+        // var normalrate=parseFloat(document.getElementById('normalrateEntry').value);
+        // var weekendrate=parseFloat(document.getElementById('weekendrateEntry').value);
+
+        var normalrate=document.getElementById('normalrateEntry').value;
+        var weekendrate=document.getElementById('weekendrateEntry').value;
 
         var money=weekends.length*weekendrate+nonweekends.length*normalrate;
         
@@ -143,7 +146,7 @@ document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
             }
         });
 
-        var recepitData = `Total No. of regular days:- ${nregular}\nTotal No. of Friday(s):- ${nfri}\nTotal No. of Saturday(s):- ${nsat}\nTotal No. of Sunday(s):- ${nsun}`;
+        var recepitData = `Total No. of regular days:- ${nregular} | Rs. ${nregular*normalrate}\nTotal No. of Friday(s):- ${nfri} | Rs. ${nfri*weekendrate}\nTotal No. of Saturday(s):- ${nsat} | Rs. ${nsat*weekendrate}\nTotal No. of Sunday(s):- ${nsun} | Rs. ${nsun*weekendrate}\n\nTotal: Rs. ${nregular*normalrate+nfri*weekendrate+nsat*weekendrate+nsun*weekendrate}`;
 
         // document.getElementById('alldates').innerText=alldatesString;
         document.getElementById('alldates').innerText=recepitData;
