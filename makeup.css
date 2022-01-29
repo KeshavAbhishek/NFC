@@ -95,6 +95,10 @@
     cursor: pointer;
 }
 
+#calculateAmount:active{
+    box-shadow: 4px 4px 0px #000;
+}
+
 #alldates{
     display: block;
     text-align: center;
