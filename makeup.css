@@ -165,10 +165,6 @@
     font-weight: bold;
 }
 
-#container{
-    margin-top: 25vh;
-}
-
 /* MEDIA QUERY */
 
 @media only screen and (max-width:700px){
@@ -187,7 +183,12 @@
     #frame-3-1{
         width: 100%;
     }
+
     #frame-3-2{
         width: 100%;
+    }
+
+    #container{
+        margin-top: 50vh;
     }
 }
