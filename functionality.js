@@ -165,3 +165,7 @@ document.getElementById("calculateAmount").addEventListener('mouseup',()=>{
     document.getElementById("calculateAmount").style.border='none';
     document.getElementById("calculateAmount").disabled=true;
 });
+
+function rld(){
+    document.location.reload();
+};
