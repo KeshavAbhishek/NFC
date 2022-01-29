@@ -161,11 +161,11 @@ document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
 
 });
 
-document.getElementById('printPage').addEventListener('mousedown',()=>{
-    setTimeout(() => {
-        window.print()
-    }, 1000);
-});
+//document.getElementById('printPage').addEventListener('mousedown',()=>{
+//    setTimeout(() => {
+//        window.print()
+//    }, 1000);
+//});
 
 document.getElementById("calculateAmount").addEventListener('mouseup',()=>{
     document.getElementById("calculateAmount").style.border='none';
