@@ -134,15 +134,19 @@ document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
         list_alldatesString.forEach(i => {
             if(i.endsWith('Sat')){
                 nsat+=1;
+                document.getElementById('datesWidthPrice').style.innerHTML+=i+` Price: ${weekendrate}\n`;
             }
             if(i.endsWith('Sun')){
                 nsun+=1;
+                document.getElementById('datesWidthPrice').style.innerHTML+=i+` Price: ${weekendrate}\n`;
             }
             if(i.endsWith('Fri')){
                 nfri+=1;
+                document.getElementById('datesWidthPrice').style.innerHTML+=i+` Price: ${weekendrate}\n`;
             }
             if(i.endsWith('Mon') | i.endsWith('Tue') | i.endsWith('Wed') | i.endsWith('Thu')){
                 nregular+=1;
+                document.getElementById('datesWidthPrice').style.innerHTML+=i+` Price: ${normalrate}\n`;
             }
         });
 
