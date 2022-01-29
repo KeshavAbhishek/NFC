@@ -143,6 +143,7 @@
     font-family: Baloo, 'Baloo Bhai 2', cursive;
     font-size: 2.7vw;
     cursor: pointer;
+    user-select: none;
 }
 
 #printPage:active{
