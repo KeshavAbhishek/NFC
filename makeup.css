@@ -58,7 +58,7 @@
     outline: none;
     cursor: pointer;
     text-align: center;
-    width: 45%;
+    /* width: 45%; */
     border-radius: 20px;
     padding: 1% 1.5%;
 }
@@ -138,10 +138,16 @@
     border-radius: 15px;
     outline: none;
     border: 0;
-    background: rgb(255,255,0);
+    color: white;
+    background: lightseagreen;
     font-family: Baloo, 'Baloo Bhai 2', cursive;
     font-size: 2.7vw;
     cursor: pointer;
+}
+
+#printPage:active{
+    color: lightseagreen;
+    background: white;
 }
 
 #frame-3-1{
@@ -163,6 +169,22 @@
     font-size: 2.5vw;
     color: black;
     font-weight: bold;
+}
+
+#datesWithPrice{
+    width: 100%;
+    height: 0vh;
+    font-size: 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    resize: none;
+    border: 0;
+    outline: none;
+}
+
+#datesWithPrice:focus{
+    border: 0;
+    outline: none;
 }
 
 /* MEDIA QUERY */
@@ -190,14 +212,5 @@
 
     #container{
         margin-top: 25vh;
-    }
-
-    #datesWidthPrice{
-        width: 100%;
-        height: 20vh;
-        font-size: 2vw;
-        font-family: Arial, Helvetica, sans-serif;
-        background: whitesmoke;
-        font-weight: bold;
     }
 }

@@ -128,25 +128,28 @@ document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
             list_alldatesString.push(element[0]+' '+element[1]);
         });
 
-        document.getElementById('alldates').style.display='none';
+        document.getElementById('datesWithPrice').style.height='20vh';
+        document.getElementById('datesWithPrice').style.transition='1s';
+
+        document.getElementById('alldates').style.display='block';
         document.getElementById('printPage').style.display='block';
 
         list_alldatesString.forEach(i => {
             if(i.endsWith('Sat')){
                 nsat+=1;
-                document.getElementById('datesWidthPrice').value+=i+` Price: ${weekendrate}\n`;
+                document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${weekendrate}\n`;
             }
             if(i.endsWith('Sun')){
                 nsun+=1;
-                document.getElementById('datesWidthPrice').value+=i+` Price: ${weekendrate}\n`;
+                document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${weekendrate}\n`;
             }
             if(i.endsWith('Fri')){
                 nfri+=1;
-                document.getElementById('datesWidthPrice').value+=i+` Price: ${weekendrate}\n`;
+                document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${weekendrate}\n`;
             }
             if(i.endsWith('Mon') | i.endsWith('Tue') | i.endsWith('Wed') | i.endsWith('Thu')){
                 nregular+=1;
-                document.getElementById('datesWidthPrice').value+=i+` Price: ${normalrate}\n`;
+                document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${normalrate}\n`;
             }
         });
 
@@ -159,7 +162,6 @@ document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
 });
 
 document.getElementById('printPage').addEventListener('mousedown',()=>{
-    document.getElementById('alldates').style.display='block';
     setTimeout(() => {
         window.print()
     }, 1000);
@@ -169,7 +171,3 @@ document.getElementById("calculateAmount").addEventListener('mouseup',()=>{
     document.getElementById("calculateAmount").style.border='none';
     document.getElementById("calculateAmount").disabled=true;
 });
-
-function rld(){
-    document.location.reload();
-};
