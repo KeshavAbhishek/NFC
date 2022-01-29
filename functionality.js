@@ -23,7 +23,7 @@ var monthdata={
 };
 
 document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
-    document.getElementById("calculateAmount").style.boxShadow='5px 5px black';
+    //document.getElementById("calculateAmount").style.boxShadow='5px 5px black';
     
     var fromdatevalue=document.getElementById('fromdate').value;
     var todatevalue=document.getElementById('todate').value;
