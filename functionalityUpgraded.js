@@ -257,4 +257,5 @@ function onPrint(){
     //document.getElementById('TODATE').innerText+=' '+todatevalue;
 
     //setTimeout(() => {html2canvas(document.getElementById('mainFrame')).then(canvas=>{document.getElementById('frame-9').appendChild(canvas);});}, 2000);
+    setTimeout(() => {print()}, 2000);
 };
