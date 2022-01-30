@@ -99,6 +99,12 @@
     box-shadow: 4px 4px 0px #000;
 }
 
+#calculateAmount:disabled{
+    color: green;
+    background: yellowgreen;
+    cursor: not-allowed;
+}
+
 #alldates{
     display: block;
     text-align: center;
@@ -207,6 +213,7 @@
 .chkbtn{
     margin-top: 2%;
     margin-left: 2%;
+    cursor: pointer;
 }
 
 #datesWithPrice:focus{

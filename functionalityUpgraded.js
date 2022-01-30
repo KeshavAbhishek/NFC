@@ -22,7 +22,8 @@ var monthdata={
     'Dec':'12'
 };
 
-document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
+// document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
+function calcAmt(){
     //document.getElementById("calculateAmount").style.boxShadow='5px 5px black';
     
     var fromdatevalue=document.getElementById('fromdate').value;
@@ -111,9 +112,11 @@ document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
 
         var money=weekends.length*weekendrate+nonweekends.length*normalrate;
         
-        var message=`Pay ₹${money} to the Newspaper Boy.`;
-
-        document.getElementById('messageScreen').innerText=message;
+        function moneyCalculation(){
+            var message=`Pay ₹${money} to the Newspaper Boy.`;
+            document.getElementById('messageScreen').innerText=message;
+        };
+        moneyCalculation()
 
         var alldatesString='';
         var list_alldatesString = new Array();
@@ -137,20 +140,20 @@ document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
         list_alldatesString.forEach(i => {
             if(i.endsWith('Sat')){
                 nsat+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${weekendrate}" value="" checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}  ||  Price: Rs. ${weekendrate}</label></div>`;
-            }
+                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${weekendrate}" value=${weekendrate} checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}  ||  Price: Rs. ${weekendrate}</label></div>`;
+            };
             if(i.endsWith('Sun')){
                 nsun+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${weekendrate}" value="" checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}  ||  Price: Rs. ${weekendrate}</label></div>`;
-            }
+                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${weekendrate}" value=${weekendrate} checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}  ||  Price: Rs. ${weekendrate}</label></div>`;
+            };
             if(i.endsWith('Fri')){
                 nfri+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${weekendrate}" value="" checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}  ||  Price: Rs. ${weekendrate}</label></div>`;
-            }
+                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${weekendrate}" value=${weekendrate} checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}  ||  Price: Rs. ${weekendrate}</label></div>`;
+            };
             if(i.endsWith('Mon') | i.endsWith('Tue') | i.endsWith('Wed') | i.endsWith('Thu')){
                 nregular+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${normalrate}" value="" checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${normalrate}" class="checkLabes">${i}  ||  Price: Rs. ${normalrate}</label></div>`;
-            }
+                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${normalrate}" value=${normalrate} checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${normalrate}" class="checkLabes">${i}  ||  Price: Rs. ${normalrate}</label></div>`;
+            };
         });
 
         // <input type="checkbox" value="" name="" class="chkbtn" checked>
@@ -159,21 +162,78 @@ document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
 
         // document.getElementById('datesWithPrice').innerHTML=`<input type="checkbox" value="" name="" class="chkbtn" checked>`;
 
-        var recepitData = `Total No. of regular days:- ${nregular} | Rs. ${nregular*normalrate}\nTotal No. of Friday(s):- ${nfri} | Rs. ${nfri*weekendrate}\nTotal No. of Saturday(s):- ${nsat} | Rs. ${nsat*weekendrate}\nTotal No. of Sunday(s):- ${nsun} | Rs. ${nsun*weekendrate}\n\nTotal: Rs. ${nregular*normalrate+nfri*weekendrate+nsat*weekendrate+nsun*weekendrate}`;
+        function showRecepit(){
+            var recepitData = `Total No. of regular days:- ${nregular} | Rs. ${nregular*normalrate}\nTotal No. of Friday(s):- ${nfri} | Rs. ${nfri*weekendrate}\nTotal No. of Saturday(s):- ${nsat} | Rs. ${nsat*weekendrate}\nTotal No. of Sunday(s):- ${nsun} | Rs. ${nsun*weekendrate}\n\nTotal: Rs. ${money}`;
+    
+            // document.getElementById('alldates').innerText=alldatesString;
+            document.getElementById('alldates').innerText=recepitData;
+        }
+        showRecepit();
 
-        // document.getElementById('alldates').innerText=alldatesString;
-        document.getElementById('alldates').innerText=recepitData;
+        var listCheckBox = document.getElementsByClassName('chkbtn');
+
+        for (let e = 0; e < listCheckBox.length; e++) {
+            const element = listCheckBox[e];
+            element.onchange=function(){
+                if(element.checked){
+                    money+=parseInt(element.value);
+                    moneyCalculation();
+                    
+                    var nameDay = dayName(element.name);
+                    if(nameDay=='Fri'){
+                        nfri+=1;
+                    };
+                    if(nameDay=='Sat'){
+                        nsat+=1;
+                    };
+                    if(nameDay=='Sun'){
+                        nsun+=1;
+                    };
+                    if(nameDay=='Mon' | nameDay=='Tue' | nameDay=='Wed' | nameDay=='Thu'){
+                        nregular+=1;
+                    };
+                    showRecepit();
+                }
+                else{
+                    money-=parseInt(element.value);
+                    moneyCalculation();
+                    
+                    var nameDay = dayName(element.name);
+                    if(nameDay=='Fri'){
+                        nfri-=1;
+                    };
+                    if(nameDay=='Sat'){
+                        nsat-=1;
+                    };
+                    if(nameDay=='Sun'){
+                        nsun-=1;
+                    };
+                    if(nameDay=='Mon' | nameDay=='Tue' | nameDay=='Wed' | nameDay=='Thu'){
+                        nregular-=1;
+                    };
+                    showRecepit();
+                };
+            };
+        };
+
+        function dayName(day){
+            var dayNameIs = day.split(' ',2)[1];
+            return dayNameIs;
+        };
+        
     };
-
-});
-
-//document.getElementById('printPage').addEventListener('mousedown',()=>{
-//    setTimeout(() => {
-//        window.print()
-//    }, 1000);
-//});
-
-document.getElementById("calculateAmount").addEventListener('mouseup',()=>{
-    document.getElementById("calculateAmount").style.border='none';
     document.getElementById("calculateAmount").disabled=true;
-});
+    document.getElementById('calculateAmount').innerText='Already Calculated';
+};
+
+function onPrint(){
+
+    document.getElementById('frame-7').style.display='none';
+    document.getElementById('datesWithPrice').style.display='none';
+    document.getElementById('frame-8').style.display='none';
+
+    document.getElementById('calculateAmount').innerText='THANK YOU !';
+    document.getElementById('calculateAmount').style.cursor='none';
+
+    print()
+}
