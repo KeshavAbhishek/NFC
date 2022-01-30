@@ -181,11 +181,21 @@
     height: 0vh;
     overflow: scroll;
     font-size: 2vw;
+    color: black;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     resize: none;
     border: 0;
     outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.chkbtn{
+    margin: 0.5% 0;
+    display: block;
 }
 
 #datesWithPrice:focus{
