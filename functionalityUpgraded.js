@@ -235,28 +235,28 @@ function onPrint(){
     document.getElementById('calculateAmount').innerText='THANK YOU !';
     document.getElementById('calculateAmount').style.cursor='none';
 
-    var fromdatevalue=document.getElementById('fromdate').value;
-    var todatevalue=document.getElementById('todate').value;
+    //var fromdatevalue=document.getElementById('fromdate').value;
+    //var todatevalue=document.getElementById('todate').value;
 
-    fromdatevalue=fromdatevalue.split('-')
-    fromdatevalue=fromdatevalue.reverse()
-    fromdatevalue=fromdatevalue.join('-')
+    //fromdatevalue=fromdatevalue.split('-')
+    //fromdatevalue=fromdatevalue.reverse()
+    //fromdatevalue=fromdatevalue.join('-')
 
-    todatevalue=todatevalue.split('-')
-    todatevalue=todatevalue.reverse()
-    todatevalue=todatevalue.join('-')
+    //todatevalue=todatevalue.split('-')
+    //todatevalue=todatevalue.reverse()
+    //todatevalue=todatevalue.join('-')
 
-    document.getElementById('fromdate').style.display='none';
-    document.getElementById('todate').style.display='none';
+    //document.getElementById('fromdate').style.display='none';
+    //document.getElementById('todate').style.display='none';
 
-    document.getElementById('FROMDATE').style.width="100%";
-    document.getElementById('TODATE').style.width="100%";
-    document.getElementById('FROMDATE').style.textAlign="center";
-    document.getElementById('TODATE').style.textAlign="center";
-    document.getElementById('FROMDATE').innerText+=' '+fromdatevalue;
-    document.getElementById('TODATE').innerText+=' '+todatevalue;
+    //document.getElementById('FROMDATE').style.width="100%";
+    //document.getElementById('TODATE').style.width="100%";
+    //document.getElementById('FROMDATE').style.textAlign="center";
+    //document.getElementById('TODATE').style.textAlign="center";
+    //document.getElementById('FROMDATE').innerText+=' '+fromdatevalue;
+    //document.getElementById('TODATE').innerText+=' '+todatevalue;
 
-    setTimeout(() => {
+    //setTimeout(() => {
         html2canvas(document.getElementById('mainFrame')).then(canvas=>{
             document.getElementById('frame-9').appendChild(canvas);
         });
