@@ -134,24 +134,26 @@ document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
         document.getElementById('alldates').style.display='block';
         document.getElementById('printPage').style.display='block';
 
-        list_alldatesString.forEach(i => {
-            if(i.endsWith('Sat')){
-                nsat+=1;
-                document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${weekendrate}\n`;
-            }
-            if(i.endsWith('Sun')){
-                nsun+=1;
-                document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${weekendrate}\n`;
-            }
-            if(i.endsWith('Fri')){
-                nfri+=1;
-                document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${weekendrate}\n`;
-            }
-            if(i.endsWith('Mon') | i.endsWith('Tue') | i.endsWith('Wed') | i.endsWith('Thu')){
-                nregular+=1;
-                document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${normalrate}\n`;
-            }
-        });
+        // list_alldatesString.forEach(i => {
+        //     if(i.endsWith('Sat')){
+        //         nsat+=1;
+        //         document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${weekendrate}\n`;
+        //     }
+        //     if(i.endsWith('Sun')){
+        //         nsun+=1;
+        //         document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${weekendrate}\n`;
+        //     }
+        //     if(i.endsWith('Fri')){
+        //         nfri+=1;
+        //         document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${weekendrate}\n`;
+        //     }
+        //     if(i.endsWith('Mon') | i.endsWith('Tue') | i.endsWith('Wed') | i.endsWith('Thu')){
+        //         nregular+=1;
+        //         document.getElementById('datesWithPrice').value+=i+`  ||  Price: Rs. ${normalrate}\n`;
+        //     }
+        // });
+
+        document.getElementById('datesWithPrice').innerHTML=`<input type="checkbox" name="Newspaper" class="chkbtn" checked>`;
 
         var recepitData = `Total No. of regular days:- ${nregular} | Rs. ${nregular*normalrate}\nTotal No. of Friday(s):- ${nfri} | Rs. ${nfri*weekendrate}\nTotal No. of Saturday(s):- ${nsat} | Rs. ${nsat*weekendrate}\nTotal No. of Sunday(s):- ${nsun} | Rs. ${nsun*weekendrate}\n\nTotal: Rs. ${nregular*normalrate+nfri*weekendrate+nsat*weekendrate+nsun*weekendrate}`;
 
