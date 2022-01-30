@@ -137,19 +137,19 @@ document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
         list_alldatesString.forEach(i => {
             if(i.endsWith('Sat')){
                 nsat+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<input type="checkbox" value="${i}+  ||  Price: Rs. ${weekendrate}" name="${i}+  ||  Price: Rs. ${weekendrate}" class="chkbtn" checked>`;
+                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}+  ||  Price: Rs. ${weekendrate}" value="" checked><label style="display: inline;" for="${i}+  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}+  ||  Price: Rs. ${weekendrate}</label></div>`;
             }
             if(i.endsWith('Sun')){
                 nsun+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<input type="checkbox" value="${i}+  ||  Price: Rs. ${weekendrate}" name="${i}+  ||  Price: Rs. ${weekendrate}" class="chkbtn" checked>`;
+                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}+  ||  Price: Rs. ${weekendrate}" value="" checked><label style="display: inline;" for="${i}+  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}+  ||  Price: Rs. ${weekendrate}</label></div>`;
             }
             if(i.endsWith('Fri')){
                 nfri+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<input type="checkbox" value="${i}+  ||  Price: Rs. ${weekendrate}" name="${i}+  ||  Price: Rs. ${weekendrate}" class="chkbtn" checked>`;
+                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}+  ||  Price: Rs. ${weekendrate}" value="" checked><label style="display: inline;" for="${i}+  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}+  ||  Price: Rs. ${weekendrate}</label></div>`;
             }
             if(i.endsWith('Mon') | i.endsWith('Tue') | i.endsWith('Wed') | i.endsWith('Thu')){
                 nregular+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<input type="checkbox" value="${i}+  ||  Price: Rs. ${normalrate}" name="${i}+  ||  Price: Rs. ${normalrate}" class="chkbtn" checked>`;
+                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}+  ||  Price: Rs. ${normalrate}" value="" checked><label style="display: inline;" for="${i}+  ||  Price: Rs. ${normalrate}" class="checkLabes">${i}+  ||  Price: Rs. ${normalrate}</label></div>`;
             }
         });
 

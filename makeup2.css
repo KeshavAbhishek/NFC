@@ -193,9 +193,14 @@
     flex-direction: column;
 }
 
+.dateWithPriceCheck{
+    width: 95%;
+    padding: 1% 0.5%;
+    background: whitesmoke;
+}
+
 .chkbtn{
     margin: 0.5% 0;
-    display: block;
 }
 
 #datesWithPrice:focus{
