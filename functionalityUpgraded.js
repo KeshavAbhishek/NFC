@@ -261,5 +261,5 @@ function onPrint(){
             document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv}.png`);
             document.getElementById('frame-9').click();
         });
-    }, 1000);
+    }, 2000);
 };
