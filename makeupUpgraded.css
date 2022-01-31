@@ -204,6 +204,8 @@
     /* width: 10%; */
     padding: 0.5% 0.5%;
     background: whitesmoke;
+    display: flex;
+    align-items: center;
 }
 
 .checkLabes{

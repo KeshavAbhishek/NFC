@@ -29,6 +29,14 @@ function calcAmt(){
     var fromdatevalue=document.getElementById('fromdate').value;
     var todatevalue=document.getElementById('todate').value;
 
+    var fdv=fromdatevalue.split('-')
+    fdv=fdv.reverse();
+    fdv=fdv.join('-');
+
+    var tdv=todatevalue.split('-')
+    tdv=tdv.reverse();
+    tdv=tdv.join('-');
+
     fromdatevalue=fromdatevalue.split('-').reverse();
     todatevalue=todatevalue.split('-').reverse();
 
@@ -234,8 +242,24 @@ function onPrint(){
 
     document.getElementById('calculateAmount').innerText='THANK YOU !';
     document.getElementById('calculateAmount').style.cursor='none';
+
+    var fromdatevalue=document.getElementById('fromdate').value;
+    var todatevalue=document.getElementById('todate').value;
+
+    var fdv=fromdatevalue.split('-')
+    fdv=fdv.reverse();
+    fdv=fdv.join('-');
+
+    var tdv=todatevalue.split('-')
+    tdv=tdv.reverse();
+    tdv=tdv.join('-');
     
     setTimeout(() => {
-        print();
-    }, 2000);
+        html2canvas(document.getElementById('mainFrame')).then(canvas=>{
+            // console.log(canvas.toDataURL('image/png'));
+            document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'));
+            document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv}.png`);
+            document.getElementById('frame-9').click();
+        });
+    }, 1000);
 };
