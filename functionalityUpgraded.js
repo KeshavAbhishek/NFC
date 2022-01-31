@@ -246,13 +246,34 @@ function onPrint(){
     var fromdatevalue=document.getElementById('fromdate').value;
     var todatevalue=document.getElementById('todate').value;
 
-    var fdv=fromdatevalue.split('-')
+    var fdv=fromdatevalue.split('-');
     fdv=fdv.reverse();
     fdv=fdv.join('-');
 
-    var tdv=todatevalue.split('-')
+    var tdv=todatevalue.split('-');
     tdv=tdv.reverse();
     tdv=tdv.join('-');
+
+    document.getElementById('span_1').style.display='inline';
+    document.getElementById('span_2').style.display='inline';
+
+    document.getElementById('fromdate').style.display='none';
+    document.getElementById('todate').style.display='none';
+
+    document.getElementById('FROMDATE').style.backgroundColor='whitesmoke';
+    document.getElementById('TODATE').style.backgroundColor='whitesmoke';
+
+    document.getElementById('FROMDATE').innerText+=' '+fdv;
+    document.getElementById('TODATE').innerText+=' '+tdv;
+
+    document.getElementById('FROMDATE').style.width='100%';
+    document.getElementById('TODATE').style.width='100%';
+
+    document.getElementById('normalrateEntry').style.display='none';
+    document.getElementById('weekendrateEntry').style.display='none';
+
+    document.getElementById('span_1').style.innerText=`${normalrate}`;
+    document.getElementById('span_2').style.display=`${weekendrate}`;
     
     setTimeout(() => {
         html2canvas(document.getElementById('mainFrame'),{dpi:500}).then(canvas=>{
