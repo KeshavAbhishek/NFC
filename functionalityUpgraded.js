@@ -22,6 +22,9 @@ var monthdata={
     'Dec':'12'
 };
 
+var NR = 0;
+var WR = 0;
+
 // document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
 function calcAmt(){
     //document.getElementById("calculateAmount").style.boxShadow='5px 5px black';
@@ -117,6 +120,9 @@ function calcAmt(){
 
         var normalrate=document.getElementById('normalrateEntry').value;
         var weekendrate=document.getElementById('weekendrateEntry').value;
+
+        NR=normalrate;
+        WR=weekendrate;
 
         var money=weekends.length*weekendrate+nonweekends.length*normalrate;
         
@@ -254,26 +260,20 @@ function onPrint(){
     tdv=tdv.reverse();
     tdv=tdv.join('-');
 
-    document.getElementById('span_1').style.display='inline';
-    document.getElementById('span_2').style.display='inline';
+    document.getElementById('span_1').style.width='49%';
+    document.getElementById('span_2').style.width='49%';
+    document.getElementById('span_1').innerText+=`${NR}`;
+    document.getElementById('span_2').innerText+=`${WR}`;
 
     document.getElementById('fromdate').style.display='none';
     document.getElementById('todate').style.display='none';
 
-    document.getElementById('FROMDATE').style.backgroundColor='whitesmoke';
-    document.getElementById('TODATE').style.backgroundColor='whitesmoke';
-
     document.getElementById('FROMDATE').innerText+=' '+fdv;
     document.getElementById('TODATE').innerText+=' '+tdv;
-
-    document.getElementById('FROMDATE').style.width='100%';
-    document.getElementById('TODATE').style.width='100%';
 
     document.getElementById('normalrateEntry').style.display='none';
     document.getElementById('weekendrateEntry').style.display='none';
 
-    document.getElementById('span_1').style.innerText=`${normalrate}`;
-    document.getElementById('span_2').style.display=`${weekendrate}`;
     
     setTimeout(() => {
         html2canvas(document.getElementById('mainFrame'),{dpi:500}).then(canvas=>{
@@ -282,5 +282,5 @@ function onPrint(){
             document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv}.png`);
             document.getElementById('frame-9').click();
         });
-    }, 2000);
+    }, 1000);
 };
