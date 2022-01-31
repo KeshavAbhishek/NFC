@@ -192,6 +192,7 @@ function calcAmt(){
                 if(element.checked){
                     money+=parseInt(element.value);
                     moneyCalculation();
+                    document.getElementById('moneyReminder').click();
                     
                     var nameDay = dayName(element.name);
                     if(nameDay=='Fri'){
@@ -211,6 +212,7 @@ function calcAmt(){
                 else{
                     money-=parseInt(element.value);
                     moneyCalculation();
+                    document.getElementById('moneyReminder').click();
                     
                     var nameDay = dayName(element.name);
                     if(nameDay=='Fri'){
