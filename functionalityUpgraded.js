@@ -278,8 +278,12 @@ function onPrint(){
     setTimeout(() => {
         html2canvas(document.getElementById('mainFrame'),{dpi:500}).then(canvas=>{
             // console.log(canvas.toDataURL('image/png'));
+
+            var dateNameForFile = new Date();
+            dateNameForFile = `${parseInt(`${dateNameForFile.getTime()}`)}`;
+
             document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'));
-            document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv}.png`);
+            document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.png`);
             document.getElementById('frame-9').click();
         });
     }, 1000);
