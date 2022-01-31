@@ -255,7 +255,7 @@ function onPrint(){
     tdv=tdv.join('-');
     
     setTimeout(() => {
-        html2canvas(document.getElementById('mainFrame')).then(canvas=>{
+        html2canvas(document.getElementById('mainFrame'),{dpi:300}).then(canvas=>{
             // console.log(canvas.toDataURL('image/png'));
             document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'));
             document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv}.png`);
