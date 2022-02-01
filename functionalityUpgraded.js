@@ -207,9 +207,6 @@ function calcAmt(){
                         nregular+=1;
                     };
                     showRecepit();
-                    setTimeout(() => {
-                        document.getElementById('moneyReminder').click();
-                    }, 1500);
                 }
                 else{
                     money-=parseInt(element.value);
@@ -229,9 +226,6 @@ function calcAmt(){
                         nregular-=1;
                     };
                     showRecepit();
-                    setTimeout(() => {
-                        document.getElementById('moneyReminder').click();
-                    }, 1500);
                 };
             };
         };
