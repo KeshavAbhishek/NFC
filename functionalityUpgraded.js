@@ -291,11 +291,13 @@ function onPrint(){
             document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.png`);
             document.getElementById('frame-9').click();
             msgLocator.setAttribute('href','');
+            msgLocator.click();
         });
     }, 1000);
 };
 
 document.location.reload=function(){
     msgLocator.setAttribute('href','');
+    msgLocator.click()
     document.location.reload();
 };
