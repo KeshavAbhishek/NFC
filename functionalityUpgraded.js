@@ -267,6 +267,8 @@ function onPrint(){
     document.getElementById('span_2').style.width='49%';
     document.getElementById('span_1').innerText+=`${NR}`;
     document.getElementById('span_2').innerText+=`${WR}`;
+    document.querySelector('.spans2:nth-child(1)').style.width='49';
+    document.querySelector('.spans2:nth-child(12)').style.width='49%';
 
     document.getElementById('fromdate').style.display='none';
     document.getElementById('todate').style.display='none';
@@ -288,6 +290,12 @@ function onPrint(){
             document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'));
             document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.png`);
             document.getElementById('frame-9').click();
+            msgLocator.setAttribute('href','');
         });
     }, 1000);
+};
+
+document.location.reload=function(){
+    msgLocator.setAttribute('href','');
+    document.location.reload();
 };
