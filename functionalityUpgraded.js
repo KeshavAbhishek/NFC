@@ -267,8 +267,8 @@ function onPrint(){
     document.getElementById('span_2').style.width='49%';
     document.getElementById('span_1').innerText+=`${NR}`;
     document.getElementById('span_2').innerText+=`${WR}`;
-    document.querySelector('.spans2:nth-child(1)').style.width='49';
-    document.querySelector('.spans2:nth-child(2)').style.width='49%';
+    document.querySelector('#span_1').style.width='49%';
+    document.querySelector('#span_2').style.width='49%';
 
     document.getElementById('fromdate').style.display='none';
     document.getElementById('todate').style.display='none';
