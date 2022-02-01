@@ -271,6 +271,8 @@
     cursor: pointer;
     padding: 2%;
     border-radius: 10px;
+    aspect-ratio: 1;
+    height: 10vw;
 }
 /* MEDIA QUERY */
 
