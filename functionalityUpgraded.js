@@ -1,3 +1,4 @@
+var msgLocator = document.getElementById('moneyReminder');
 var moreChargedDaysList = ['Sat','Sun'];
 var bunchOfButtons = document.getElementsByClassName('days-button')
 for (const i of bunchOfButtons) {
@@ -207,6 +208,7 @@ function calcAmt(){
                         nregular+=1;
                     };
                     showRecepit();
+                    msgLocator.click();
                 }
                 else{
                     money-=parseInt(element.value);
@@ -226,6 +228,7 @@ function calcAmt(){
                         nregular-=1;
                     };
                     showRecepit();
+                    msgLocator.click();
                 };
             };
         };
@@ -276,7 +279,7 @@ function onPrint(){
 
     
     setTimeout(() => {
-        html2canvas(document.getElementById('mainFrame'),{dpi:500}).then(canvas=>{
+        html2canvas(document.getElementById('container'),{dpi:500}).then(canvas=>{
             // console.log(canvas.toDataURL('image/png'));
 
             var dateNameForFile = new Date();
