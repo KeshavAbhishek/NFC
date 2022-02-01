@@ -13,19 +13,19 @@
         <div id="mainFrame">
             <div class="childFrames" id="frame-1">Newspaper Fee</div>
             <div class="childFrames" id="frame-2">
-                <input class="rateInputs less700" min=0 type="number" id="normalrateEntry" placeholder="Daily Newspaper Rate in (₹)">
-                <input class="rateInputs less700" min=0 type="number" id="weekendrateEntry" placeholder="Weekend Newspaper Rate in (₹)">
+                <input class="rateInputs less700" min=0 type="number" id="normalrateEntry" placeholder="Daily Newspaper Rate in (₹)" required>
+                <input class="rateInputs less700" min=0 type="number" id="weekendrateEntry" placeholder="Weekend Newspaper Rate in (₹)" required>
                 <span class="spans2 less700" id="span_1"></span>
                 <span class="spans2 less700" id="span_2"></span>
             </div>
             <div class="childFrames" id="frame-3">
                 <div id="frame-3-1">
                     <span class="spans" id="FROMDATE">From: </span>
-                    <input class="dates less700" type="date" id="fromdate" date-formart="dd-mm-yyyy">
+                    <input class="dates less700" type="date" id="fromdate" date-formart="dd-mm-yyyy" required>
                 </div>
                 <div id="frame-3-2">
                     <span class="spans" id="TODATE">To: </span>
-                    <input class="dates less700" type="date" id="todate" date-formart="dd-mm-yyyy">
+                    <input class="dates less700" type="date" id="todate" date-formart="dd-mm-yyyy" required>
                 </div>
             </div>
             <div class="childFrames" id="frame-7">
@@ -49,10 +49,13 @@
             </div>
             <div class="childFrames" id="frame-8">
                 <!-- <button id="printPage" onclick="onPrint()">P R I N T</button> -->
-                <button id="printPage" onclick="onPrint()">DOWNLOAD RECEPIT</button>
+                <button id="printPage" onclick="onPrint()">GENERATE RECEPIT</button>
+            </div>
+            <div id="frame-10" class="childFrames">
+                <img src="images/pnglogo.png" width="55vw" height="20%" class="logos" alt="PNG LOGO" id="pngLogo">
+                <img src="images/jpglogo.png" width="55vw" height="20%" class="logos" alt="JPG LOGO" id="jpgLogo">
             </div>
             <a href="" id="frame-9"></a>
-            <a href="#frame-1" id="moneyReminder"></a>
         </div>
     </div>
 </body>

@@ -1,4 +1,3 @@
-var msgLocator = document.getElementById('moneyReminder');
 var moreChargedDaysList = ['Sat','Sun'];
 var bunchOfButtons = document.getElementsByClassName('days-button')
 for (const i of bunchOfButtons) {
@@ -208,7 +207,6 @@ function calcAmt(){
                         nregular+=1;
                     };
                     showRecepit();
-                    msgLocator.click();
                 }
                 else{
                     money-=parseInt(element.value);
@@ -228,7 +226,6 @@ function calcAmt(){
                         nregular-=1;
                     };
                     showRecepit();
-                    msgLocator.click();
                 };
             };
         };
@@ -288,16 +285,23 @@ function onPrint(){
             dateNameForFile = `${parseInt(`${dateNameForFile.getTime()}`)}`;
 
             document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'));
-            document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.png`);
-            document.getElementById('frame-9').click();
-            msgLocator.setAttribute('href','#frame-1');
-            msgLocator.click();
+
+            function downloadPNG(){
+                nameDownloadingFile('png')
+            };
+            function downloadJPG(){
+                nameDownloadingFile('jpg')
+            };
+
+            document.getElementById('frame-10').style.display='flex';
+
+            document.getElementById('jpgLogo').addEventListener('click',downloadJPG);
+            document.getElementById('pngLogo').addEventListener('click',downloadPNG);
+
+            function nameDownloadingFile(tYpE){
+                document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.${tYpE}`);
+                document.getElementById('frame-9').click();
+            };
         });
     }, 1000);
-};
-
-document.location.reload=function(){
-    msgLocator.setAttribute('href','frame-1');
-    msgLocator.click();
-    document.location.reload();
 };
