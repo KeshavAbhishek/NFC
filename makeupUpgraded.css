@@ -250,7 +250,7 @@
     }
 
     .less700{
-        width: 100%;
+        width: 100% !important;
         margin: 1% 0;
     }
 

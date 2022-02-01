@@ -290,14 +290,14 @@ function onPrint(){
             document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'));
             document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.png`);
             document.getElementById('frame-9').click();
-            msgLocator.setAttribute('href','');
+            msgLocator.setAttribute('href','#frame-1');
             msgLocator.click();
         });
     }, 1000);
 };
 
 document.location.reload=function(){
-    msgLocator.setAttribute('href','');
-    msgLocator.click()
+    msgLocator.setAttribute('href','frame-1');
+    msgLocator.click();
     document.location.reload();
 };
