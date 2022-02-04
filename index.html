@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Newspaper Fee Calculator</title>
-    <link rel="stylesheet" href="makeup.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="container">
@@ -37,16 +38,20 @@
             </div>
             <div class="childFrames" id="frame-6">
                 <label id="alldates">Result will flash soon...</label>
-                <textarea id="datesWithPrice" readonly></textarea>
+                <div id="datesWithPrice"></div>
+                <!-- <textarea id="datesWithPrice" readonly></textarea> -->
+                <!-- <div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="" value="" checked><label style="display: inline;" for="" class="checkLabes"></label></div> -->
             </div>
             <div class="childFrames" id="frame-4">
-                <button id="calculateAmount">Calculate</button>
+                <button id="calculateAmount" onclick="calcAmt()">Calculate</button>
             </div>
             <div class="childFrames" id="frame-8">
-                <button id="printPage">P R I N T</button>
+                <!-- <button id="printPage" onclick="onPrint()">P R I N T</button> -->
+                <button id="printPage" onclick="onPrint()">GENERATE RECEPIT</button>
             </div>
+            <div id="paperNotGiven"></div>
         </div>
     </div>
 </body>
-<script src="functionality.js" defer></script>
+<script src="node.js" defer></script>
 </html>

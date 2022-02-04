@@ -132,7 +132,7 @@ function calcAmt(){
         });
 
         document.getElementById('datesWithPrice').style.height='auto';
-        document.getElementById('datesWithPrice').style.transition='1s';
+        document.getElementById('paperNotGiven').style.height='auto';
 
         document.getElementById('alldates').style.display='block';
         document.getElementById('printPage').style.display='block';
@@ -172,6 +172,7 @@ function calcAmt(){
 
         var listCheckBox = document.getElementsByClassName('chkbtn');
 
+        var paperNotGivenList = new Array();
         for (let e = 0; e < listCheckBox.length; e++) {
             const element = listCheckBox[e];
             element.onchange=function(){
@@ -182,15 +183,31 @@ function calcAmt(){
                     var nameDay = dayName(element.name);
                     if(nameDay=='Fri'){
                         nfri+=1;
+                        var paritalName = element.name.split('  ||  ')[0];
+                        var paritalNamePos = paperNotGivenList.indexOf(paritalName);
+                        paperNotGivenList.splice(paritalNamePos,1);
+                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Sat'){
                         nsat+=1;
+                        var paritalName = element.name.split('  ||  ')[0];
+                        var paritalNamePos = paperNotGivenList.indexOf(paritalName);
+                        paperNotGivenList.splice(paritalNamePos,1);
+                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Sun'){
                         nsun+=1;
+                        var paritalName = element.name.split('  ||  ')[0];
+                        var paritalNamePos = paperNotGivenList.indexOf(paritalName);
+                        paperNotGivenList.splice(paritalNamePos,1);
+                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Mon' | nameDay=='Tue' | nameDay=='Wed' | nameDay=='Thu'){
                         nregular+=1;
+                        var paritalName = element.name.split('  ||  ')[0];
+                        var paritalNamePos = paperNotGivenList.indexOf(paritalName);
+                        paperNotGivenList.splice(paritalNamePos,1);
+                        reWrite(paperNotGivenList);
                     };
                     showRecepit();
                 }
@@ -201,15 +218,27 @@ function calcAmt(){
                     var nameDay = dayName(element.name);
                     if(nameDay=='Fri'){
                         nfri-=1;
+                        var paritalName = element.name.split('  ||  ')[0];
+                        paperNotGivenList.push(paritalName);
+                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Sat'){
                         nsat-=1;
+                        var paritalName = element.name.split('  ||  ')[0];
+                        paperNotGivenList.push(paritalName);
+                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Sun'){
                         nsun-=1;
+                        var paritalName = element.name.split('  ||  ')[0];
+                        paperNotGivenList.push(paritalName);
+                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Mon' | nameDay=='Tue' | nameDay=='Wed' | nameDay=='Thu'){
                         nregular-=1;
+                        var paritalName = element.name.split('  ||  ')[0];
+                        paperNotGivenList.push(paritalName);
+                        reWrite(paperNotGivenList);
                     };
                     showRecepit();
                 };
@@ -239,3 +268,12 @@ function onPrint(){
         print();
     }, 2000);
 };
+
+function reWrite(list){
+    // list=list.join('\n');
+    // document.getElementById('paperNotGiven').innerHTML=list;
+
+    for (const element of list) {
+        document.getElementById('paperNotGiven').innerHTML+=`<span style="display: block;color: red;margin: 2%;">${element}</span>`;
+    }
+}
