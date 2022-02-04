@@ -22,12 +22,23 @@ var monthdata={
     'Dec':'12'
 };
 
+var NR = 0;
+var WR = 0;
+
 // document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
 function calcAmt(){
     //document.getElementById("calculateAmount").style.boxShadow='5px 5px black';
     
     var fromdatevalue=document.getElementById('fromdate').value;
     var todatevalue=document.getElementById('todate').value;
+
+    var fdv=fromdatevalue.split('-')
+    fdv=fdv.reverse();
+    fdv=fdv.join('-');
+
+    var tdv=todatevalue.split('-')
+    tdv=tdv.reverse();
+    tdv=tdv.join('-');
 
     fromdatevalue=fromdatevalue.split('-').reverse();
     todatevalue=todatevalue.split('-').reverse();
@@ -110,6 +121,9 @@ function calcAmt(){
         var normalrate=document.getElementById('normalrateEntry').value;
         var weekendrate=document.getElementById('weekendrateEntry').value;
 
+        NR=normalrate;
+        WR=weekendrate;
+
         var money=weekends.length*weekendrate+nonweekends.length*normalrate;
         
         function moneyCalculation(){
@@ -132,7 +146,7 @@ function calcAmt(){
         });
 
         document.getElementById('datesWithPrice').style.height='auto';
-        document.getElementById('paperNotGiven').style.height='auto';
+        document.getElementById('datesWithPrice').style.transition='1s';
 
         document.getElementById('alldates').style.display='block';
         document.getElementById('printPage').style.display='block';
@@ -172,7 +186,6 @@ function calcAmt(){
 
         var listCheckBox = document.getElementsByClassName('chkbtn');
 
-        var paperNotGivenList = new Array();
         for (let e = 0; e < listCheckBox.length; e++) {
             const element = listCheckBox[e];
             element.onchange=function(){
@@ -183,31 +196,15 @@ function calcAmt(){
                     var nameDay = dayName(element.name);
                     if(nameDay=='Fri'){
                         nfri+=1;
-                        var paritalName = element.name.split('  ||  ')[0];
-                        var paritalNamePos = paperNotGivenList.indexOf(paritalName);
-                        paperNotGivenList.splice(paritalNamePos,1);
-                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Sat'){
                         nsat+=1;
-                        var paritalName = element.name.split('  ||  ')[0];
-                        var paritalNamePos = paperNotGivenList.indexOf(paritalName);
-                        paperNotGivenList.splice(paritalNamePos,1);
-                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Sun'){
                         nsun+=1;
-                        var paritalName = element.name.split('  ||  ')[0];
-                        var paritalNamePos = paperNotGivenList.indexOf(paritalName);
-                        paperNotGivenList.splice(paritalNamePos,1);
-                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Mon' | nameDay=='Tue' | nameDay=='Wed' | nameDay=='Thu'){
                         nregular+=1;
-                        var paritalName = element.name.split('  ||  ')[0];
-                        var paritalNamePos = paperNotGivenList.indexOf(paritalName);
-                        paperNotGivenList.splice(paritalNamePos,1);
-                        reWrite(paperNotGivenList);
                     };
                     showRecepit();
                 }
@@ -218,27 +215,15 @@ function calcAmt(){
                     var nameDay = dayName(element.name);
                     if(nameDay=='Fri'){
                         nfri-=1;
-                        var paritalName = element.name.split('  ||  ')[0];
-                        paperNotGivenList.push(paritalName);
-                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Sat'){
                         nsat-=1;
-                        var paritalName = element.name.split('  ||  ')[0];
-                        paperNotGivenList.push(paritalName);
-                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Sun'){
                         nsun-=1;
-                        var paritalName = element.name.split('  ||  ')[0];
-                        paperNotGivenList.push(paritalName);
-                        reWrite(paperNotGivenList);
                     };
                     if(nameDay=='Mon' | nameDay=='Tue' | nameDay=='Wed' | nameDay=='Thu'){
                         nregular-=1;
-                        var paritalName = element.name.split('  ||  ')[0];
-                        paperNotGivenList.push(paritalName);
-                        reWrite(paperNotGivenList);
                     };
                     showRecepit();
                 };
@@ -263,17 +248,60 @@ function onPrint(){
 
     document.getElementById('calculateAmount').innerText='THANK YOU !';
     document.getElementById('calculateAmount').style.cursor='none';
+
+    var fromdatevalue=document.getElementById('fromdate').value;
+    var todatevalue=document.getElementById('todate').value;
+
+    var fdv=fromdatevalue.split('-');
+    fdv=fdv.reverse();
+    fdv=fdv.join('-');
+
+    var tdv=todatevalue.split('-');
+    tdv=tdv.reverse();
+    tdv=tdv.join('-');
+
+    document.getElementById('span_1').style.width='49%';
+    document.getElementById('span_2').style.width='49%';
+    document.getElementById('span_1').innerText+=`${NR}`;
+    document.getElementById('span_2').innerText+=`${WR}`;
+    document.querySelector('#span_1').style.width='49%';
+    document.querySelector('#span_2').style.width='49%';
+
+    document.getElementById('fromdate').style.display='none';
+    document.getElementById('todate').style.display='none';
+
+    document.getElementById('FROMDATE').innerText+=' '+fdv;
+    document.getElementById('TODATE').innerText+=' '+tdv;
+
+    document.getElementById('normalrateEntry').style.display='none';
+    document.getElementById('weekendrateEntry').style.display='none';
+
     
     setTimeout(() => {
-        print();
-    }, 2000);
+        html2canvas(document.getElementById('container'),{dpi:500}).then(canvas=>{
+            // console.log(canvas.toDataURL('image/png'));
+
+            var dateNameForFile = new Date();
+            dateNameForFile = `${parseInt(`${dateNameForFile.getTime()}`)}`;
+
+            document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'));
+
+            function downloadPNG(){
+                nameDownloadingFile('png')
+            };
+            function downloadJPG(){
+                nameDownloadingFile('jpg')
+            };
+
+            document.getElementById('frame-10').style.display='flex';
+
+            document.getElementById('jpgLogo').addEventListener('click',downloadJPG);
+            document.getElementById('pngLogo').addEventListener('click',downloadPNG);
+
+            function nameDownloadingFile(tYpE){
+                document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.${tYpE}`);
+                document.getElementById('frame-9').click();
+            };
+        });
+    }, 1000);
 };
-
-function reWrite(list){
-    // list=list.join('\n');
-    // document.getElementById('paperNotGiven').innerHTML=list;
-
-    for (const element of list) {
-        document.getElementById('paperNotGiven').innerHTML+=`<span style="display: block;color: red;margin: 2%;">${element}</span>`;
-    }
-}
