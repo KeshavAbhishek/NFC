@@ -278,7 +278,7 @@ function onPrint(){
 
     
     setTimeout(() => {
-        html2canvas(document.getElementById('container'),{dpi:500}).then(canvas=>{
+        html2canvas(document.getElementById('container'),{dpi:5000}).then(canvas=>{
             // console.log(canvas.toDataURL('image/png'));
 
             var dateNameForFile = new Date();
@@ -287,16 +287,22 @@ function onPrint(){
             document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'));
 
             function downloadPNG(){
-                nameDownloadingFile('png')
+                nameDownloadingFile('png');
             };
             function downloadJPG(){
-                nameDownloadingFile('jpg')
+                nameDownloadingFile('jpg');
+            };
+            function downloadPDF(){
+                data = new jsPDF('l','mm','a4');
+                data.addImage(canvas.toDataURL('image/png'),'PNG',0,0,data.internal.pageSize.getWidth()+(0.5*data.internal.pageSize.getWidth()),data.internal.pageSize.getHeight());
+                data.save(`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.pdf`);
             };
 
             document.getElementById('frame-10').style.display='flex';
 
             document.getElementById('jpgLogo').addEventListener('click',downloadJPG);
             document.getElementById('pngLogo').addEventListener('click',downloadPNG);
+            document.getElementById('pdfLogo').addEventListener('click',downloadPDF);
 
             function nameDownloadingFile(tYpE){
                 document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.${tYpE}`);
