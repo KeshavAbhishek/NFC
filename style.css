@@ -278,6 +278,12 @@
 .logos{
     cursor: pointer;
     margin: 3% 0;
+    font-size: 2.2vw;
+
+}
+
+.logos::before{
+    box-shadow: 4px 4px 0px black;
 }
 
 .logos:nth-child(1){color: crimson;}
@@ -314,5 +320,9 @@
     #frame-10{
     	justify-content: center;
     	flex-direction: column;
+    }
+
+    .logos::before{
+        box-shadow: 2px 2px 0px black;
     }
 }

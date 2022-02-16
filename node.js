@@ -299,6 +299,8 @@ function onPrint(){
             };
 
             document.getElementById('frame-10').style.display='flex';
+            document.getElementById('frameLocator').click();
+
 
             document.getElementById('jpgLogo').addEventListener('click',downloadJPG);
             document.getElementById('pngLogo').addEventListener('click',downloadPNG);
