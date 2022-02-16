@@ -293,7 +293,7 @@ function onPrint(){
                 nameDownloadingFile('jpg');
             };
             function downloadPDF(){
-                data = new jsPDF('l','mm','a4');
+                data = new jsPDF('p','mm','a4');
                 data.addImage(canvas.toDataURL('image/png'),'PNG',0,0,data.internal.pageSize.getWidth()+(0.5*data.internal.pageSize.getWidth()),data.internal.pageSize.getHeight());
                 data.save(`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.pdf`);
             };
