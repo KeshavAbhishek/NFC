@@ -278,7 +278,7 @@ function onPrint(){
 
     
     setTimeout(() => {
-        html2canvas(document.getElementById('container'),{dpi:5000}).then(canvas=>{
+        html2canvas(document.getElementById('mainFrame'),{dpi:5000}).then(canvas=>{
             // console.log(canvas.toDataURL('image/png'));
 
             var dateNameForFile = new Date();
@@ -294,7 +294,7 @@ function onPrint(){
             };
             function downloadPDF(){
                 data = new jsPDF('p','mm','a4');
-                data.addImage(canvas.toDataURL('image/png'),'PNG',0,0,data.internal.pageSize.getWidth(),data.internal.pageSize.getHeight());
+                data.addImage(canvas.toDataURL('image/png'),'PNG',0,0);
                 data.save(`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.pdf`);
             };
 
