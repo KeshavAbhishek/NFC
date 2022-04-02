@@ -266,6 +266,9 @@ function onPrint(){
     document.getElementById('span_2').innerText+=`${WR}`;
     document.querySelector('#span_1').style.width='49%';
     document.querySelector('#span_2').style.width='49%';
+    document.getElementById('span_1').style.display='block';
+    document.getElementById('span_2').style.display='block';
+
 
     document.getElementById('fromdate').style.display='none';
     document.getElementById('todate').style.display='none';
@@ -275,16 +278,19 @@ function onPrint(){
 
     document.getElementById('normalrateEntry').style.display='none';
     document.getElementById('weekendrateEntry').style.display='none';
+    document.getElementById('reloadIcon').style.color='white';
+    document.getElementById('reloadIcon').style.background='white';
+    document.getElementById('reloadIcon').style.boxShadow='4px 4px 1.25px white';
 
     
     setTimeout(() => {
-        html2canvas(document.getElementById('mainFrame'),{dpi:5000}).then(canvas=>{
+        html2canvas(document.getElementById('container'),{dpi:5000}).then(canvas=>{
             // console.log(canvas.toDataURL('image/png'));
 
             var dateNameForFile = new Date();
             dateNameForFile = `${parseInt(`${dateNameForFile.getTime()}`)}`;
 
-            document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'));
+            document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'),1.0);
 
             function downloadPNG(){
                 nameDownloadingFile('png');
@@ -299,8 +305,9 @@ function onPrint(){
             };
 
             document.getElementById('frame-10').style.display='flex';
-            document.getElementById('frameLocator').click();
-
+            document.getElementById('reloadIcon').style.color='#000';
+            document.getElementById('reloadIcon').style.background='rgba(255, 0, 255, 0.2)';
+            document.getElementById('reloadIcon').style.boxShadow='4px 4px 1.25px rgba(255, 0, 255, 0.3)';
 
             document.getElementById('jpgLogo').addEventListener('click',downloadJPG);
             document.getElementById('pngLogo').addEventListener('click',downloadPNG);
@@ -311,5 +318,5 @@ function onPrint(){
                 document.getElementById('frame-9').click();
             };
         });
-    }, 1000);
+    }, 1500);
 };

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@800&display=swap');@import url('https://fonts.googleapis.com/css2?family=Tangerine&display=swap');
 
 *{
     padding: 0;
@@ -141,8 +141,8 @@
     border: 0;
     outline: none;
     cursor: pointer;
-    background: linear-gradient(to right,rgb(192, 1, 192),rgb(71, 58, 247));
-    /* background: linear-gradient(135deg,rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247)); */
+    background: linear-gradient(92deg,rgb(192, 1, 192),rgb(71, 58, 247));
+    /* background: linear-gradient(0deg,rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247),rgb(192, 1, 192),rgb(71, 58, 247)); */
     color: white;
     font-size: 2vw;
     font-weight: bolder;
@@ -293,6 +293,11 @@
 /* MEDIA QUERY */
 
 @media only screen and (max-width:700px){
+
+    #mainFrame{
+        width: 80%;
+    }
+
     .childFrames{
         display: flex;
         align-items: center;
@@ -325,8 +330,83 @@
     .logos::before{
         box-shadow: 2px 2px 0px black;
     }
+
+    #frame-1{
+        font-size: 2pc !important;
+    }
+
+    #normalrateEntry{
+        font-size: 1.35pc;
+        padding: 2% 0;
+        margin: 2% 0;
+    }
+    #weekendrateEntry{
+        font-size: 1.35pc;
+        padding: 2% 0;
+        margin: 2% 0;
+    }
+
+    .spans2{
+        font-size: 1.35pc;
+        padding: 2% 0;
+        margin: 2% 0;
+        display: none;
+    }
+
+    #FROMDATE{font-size: 1.25pc;}
+    #TODATE{font-size: 1.25pc;}
+
+    #fromdate{font-size: 1.25pc !important;}
+    #todate{font-size: 1.25pc !important;}
+
+    .days-button{
+        font-size: 2pc;
+        padding: 1.8% 0;
+        font-family: 'Tangerine', cursive;
+    }
+
+    #alldates{
+        font-size: 1pc !important;
+    }
+
+    #calculateAmount{background: linear-gradient(to right, gold, yellow, gold);font-size: 1.25pc;padding: 1.2% 0;}
+    #printPage{font-size: 1.25pc;padding: 1.35% 0;}
+
+    #messageScreen{font-size: 1pc;}
+
+    #reloadIcon{
+        display: inherit !important;
+        position: absolute;
+        right: 5%;
+        font-size: 1.25pc;
+        top: 2%;
+        background: rgba(255, 0, 255, 0.2);
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 4px 4px 1.25px rgba(255, 0, 255, 0.3);
+        cursor: pointer;
+    }
+    
+    #reloadIcon:active{
+        box-shadow: none;
+        transform: translateX(4px) translateY(4px);
+    }
+
+    #datesWithPrice{font-size: 1.2pc;}
 }
 
 ::-webkit-scrollbar{
     display: none;
+}
+
+#reloadIcon{display: none;}
+
+#calculateAmount{
+    /* box-shadow: 5px 5px 0px rgba(0,0,0,0.5); */
+    box-shadow: 5px 5px 0px #f5f5f5;
+}
+
+#calculateAmount:active{
+    box-shadow: none;
+    transform: translateX(5px) translateY(5px);
 }

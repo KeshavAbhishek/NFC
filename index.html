@@ -7,7 +7,7 @@
     <title>Newspaper Fee Calculator</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
     <script src="https://kit.fontawesome.com/477be79e6e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
@@ -24,11 +24,11 @@
             </div>
             <div class="childFrames" id="frame-3">
                 <div id="frame-3-1">
-                    <span class="spans" id="FROMDATE">From: </span>
+                    <span class="spans" id="FROMDATE">From:&nbsp;</span>
                     <input class="dates less700" type="date" id="fromdate" date-formart="dd-mm-yyyy" required>
                 </div>
                 <div id="frame-3-2">
-                    <span class="spans" id="TODATE">To: </span>
+                    <span class="spans" id="TODATE">To:&nbsp;</span>
                     <input class="dates less700" type="date" id="todate" date-formart="dd-mm-yyyy" required>
                 </div>
             </div>
@@ -40,10 +40,12 @@
                 <button id="friday" class="days-button less700">Friday</button>
             </div>
             <div class="childFrames" id="frame-5">
+                <!-- <label id="messageScreen">Pay ₹100 to the Newspaper Boy.</label> -->
                 <label id="messageScreen"></label>
             </div>
             <div class="childFrames" id="frame-6">
-                <label id="alldates">Result will flash soon...</label>
+                <!-- <label id="alldates">Result will flash soon...</label> -->
+                <label id="alldates">Recepit will be generated post to calculation...</label>
                 <div id="datesWithPrice"></div>
                 <!-- <textarea id="datesWithPrice" readonly></textarea> -->
                 <!-- <div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="" value="" checked><label style="display: inline;" for="" class="checkLabes"></label></div> -->
@@ -63,8 +65,8 @@
 				<i class="fas fa-file-pdf logos" id="pdfLogo">&nbsp;&nbsp;Download PDF</i>
 				<i class="fas fa-file-image logos" id="jpgLogo">&nbsp;&nbsp;Download JPG</i>
             </div>
+            <i class="fa-solid fa-arrow-rotate-right" onclick="window.location.reload()" id="reloadIcon"></i>
             <a href="" id="frame-9"></a>
-            <a href="#frame-10" id="frameLocator"></a>
         </div>
     </div>
 </body>
