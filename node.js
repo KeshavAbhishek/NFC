@@ -1,7 +1,10 @@
+var audioPlay = new Audio('https://guessinggame-number.herokuapp.com/assets/beep.mp3');
+
 var moreChargedDaysList = ['Sat','Sun'];
 var bunchOfButtons = document.getElementsByClassName('days-button')
 for (const i of bunchOfButtons) {
     i.addEventListener('mousedown',()=>{
+        audioPlay.play()
         moreChargedDaysList.push(i.innerText[0]+i.innerText[1]+i.innerText[2]);
         alert(`${i.innerHTML} added as weekends or more extra charged days.`);
     });
@@ -28,6 +31,8 @@ var WR = 0;
 // document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
 function calcAmt(){
     //document.getElementById("calculateAmount").style.boxShadow='5px 5px black';
+
+    audioPlay.play();
     
     var fromdatevalue=document.getElementById('fromdate').value;
     var todatevalue=document.getElementById('todate').value;
@@ -238,9 +243,13 @@ function calcAmt(){
     };
     document.getElementById("calculateAmount").disabled=true;
     document.getElementById('calculateAmount').innerText='Already Calculated';
+
+    document.getElementById('draggerLinkDown').style.display='inline';
 };
 
 function onPrint(){
+
+    audioPlay.play();
 
     document.getElementById('frame-7').style.display='none';
     document.getElementById('datesWithPrice').style.display='none';
@@ -282,6 +291,11 @@ function onPrint(){
     document.getElementById('reloadIcon').style.background='white';
     document.getElementById('reloadIcon').style.boxShadow='4px 4px 1.25px white';
 
+    document.getElementById('draggerLinkDown').style.display='none';
+    document.getElementById('draggerLinkUp').style.display='none';
+
+    document.getElementById('calculateAmount').style.boxShadow='none';
+
     
     setTimeout(() => {
         html2canvas(document.getElementById('container'),{dpi:5000}).then(canvas=>{
@@ -293,12 +307,15 @@ function onPrint(){
             document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'),1.0);
 
             function downloadPNG(){
+                audioPlay.play();
                 nameDownloadingFile('png');
             };
             function downloadJPG(){
+                audioPlay.play();
                 nameDownloadingFile('jpg');
             };
             function downloadPDF(){
+                audioPlay.play();
                 data = new jsPDF('p','mm','a4');
                 data.addImage(canvas.toDataURL('image/png'),'PNG',0,0);
                 data.save(`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.pdf`);
@@ -320,3 +337,14 @@ function onPrint(){
         });
     }, 1500);
 };
+
+
+function pageDown(){
+    document.getElementById('draggerLinkDown').style.display='none';
+    document.getElementById('draggerLinkUp').style.display='inline';
+}
+
+function pageUp(){
+    document.getElementById('draggerLinkUp').style.display='none';
+    document.getElementById('draggerLinkDown').style.display='inline';
+}
