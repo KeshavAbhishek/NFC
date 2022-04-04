@@ -392,47 +392,6 @@
         transform: translateX(4px) translateY(4px);
     }
 
-    #draggerLinkDown{
-        position: fixed;
-        right: 5%;
-        bottom: 5%;
-        font-size: 1.25pc;
-        background: #000;
-        padding: 2% 2.7%;
-        border-radius: 50%;
-        color: white;
-        box-shadow: 4.5px 4.5px 1.75px rgba(0, 0, 0, 0.4);
-        display: none;
-    }
-
-    #draggerLinkDown:active{
-        box-shadow: none;
-        transform: translateX(4.5px) translateY(4.5px);
-        color: crimson;
-        background: gold;
-    }
-
-    #draggerLinkUp{
-        position: fixed;
-        left: 5%;
-        top: 5%;
-        font-size: 1.25pc;
-        background: #000;
-        padding: 2% 2.7%;
-        border-radius: 50%;
-        color: white;
-        box-shadow: -4.5px -4.5px 1.75px rgba(0, 0, 0, 0.4);
-        transform: rotate(180deg);
-        display: none;
-    }
-
-    #draggerLinkUp:active{
-        box-shadow: none;
-        transform: translateX(4.5px) translateY(4.5px);
-        color: crimson;
-        background: gold;
-    }
-
     #datesWithPrice{font-size: 1.2pc;}
 }
 
@@ -450,46 +409,4 @@
 #calculateAmount:active{
     box-shadow: none;
     transform: translateX(5px) translateY(5px);
-}
-
-#draggerLinkDown{
-    position: fixed;
-    right: 2.5%;
-    bottom: 2.5%;
-    font-size: 2.5pc;
-    background: #000;
-    padding: 2% 2.7%;
-    border-radius: 50%;
-    color: white;
-    box-shadow: 4.5px 4.5px 1.75px rgba(0, 0, 0, 0.4);
-    display: none;
-}
-
-#draggerLinkDown:active{
-    box-shadow: none;
-    transform: translateX(4.5px) translateY(4.5px);
-    color: crimson;
-    background: gold;
-}
-
-#draggerLinkUp{
-    position: fixed;
-    left: 2.5%;
-    top: 2.5%;
-    font-size: 2.5pc;
-    background: #000;
-    padding: 2% 2.7%;
-    border-radius: 50%;
-    color: white;
-    box-shadow: -4.5px -4.5px 1.75px rgba(0, 0, 0, 0.4);
-    transform: rotate(180deg);
-    display: none;
-}
-
-#draggerLinkUp:active{
-    box-shadow: none;
-    transform: translateX(4.5px) translateY(4.5px);
-    color: crimson;
-    background: gold;
-    transform: rotate(180deg);
 }
