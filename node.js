@@ -243,8 +243,6 @@ function calcAmt(){
     };
     document.getElementById("calculateAmount").disabled=true;
     document.getElementById('calculateAmount').innerText='Already Calculated';
-
-    document.getElementById('draggerLinkDown').style.display='inline';
 };
 
 function onPrint(){
@@ -291,9 +289,6 @@ function onPrint(){
     document.getElementById('reloadIcon').style.background='white';
     document.getElementById('reloadIcon').style.boxShadow='4px 4px 1.25px white';
 
-    document.getElementById('draggerLinkDown').style.display='none';
-    document.getElementById('draggerLinkUp').style.display='none';
-
     document.getElementById('calculateAmount').style.boxShadow='none';
 
     
@@ -337,14 +332,3 @@ function onPrint(){
         });
     }, 1500);
 };
-
-
-function pageDown(){
-    document.getElementById('draggerLinkDown').style.display='none';
-    document.getElementById('draggerLinkUp').style.display='inline';
-}
-
-function pageUp(){
-    document.getElementById('draggerLinkUp').style.display='none';
-    document.getElementById('draggerLinkDown').style.display='inline';
-}
