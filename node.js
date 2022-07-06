@@ -309,12 +309,12 @@ function onPrint(){
                 audioPlay.play();
                 nameDownloadingFile('jpg');
             };
-            function downloadPDF(){
-                audioPlay.play();
-                data = new jsPDF('p','mm','a4');
-                data.addImage(canvas.toDataURL('image/png'),'PNG',0,0);
-                data.save(`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.pdf`);
-            };
+            // function downloadPDF(){
+            //     audioPlay.play();
+            //     data = new jsPDF('p','mm','a4');
+            //     data.addImage(canvas.toDataURL('image/png'),'PNG',0,0);
+            //     data.save(`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.pdf`);
+            // };
 
             document.getElementById('frame-10').style.display='flex';
             document.getElementById('reloadIcon').style.color='#000';
@@ -323,7 +323,7 @@ function onPrint(){
 
             document.getElementById('jpgLogo').addEventListener('click',downloadJPG);
             document.getElementById('pngLogo').addEventListener('click',downloadPNG);
-            document.getElementById('pdfLogo').addEventListener('click',downloadPDF);
+            // document.getElementById('pdfLogo').addEventListener('click',downloadPDF);
 
             function nameDownloadingFile(tYpE){
                 document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.${tYpE}`);
