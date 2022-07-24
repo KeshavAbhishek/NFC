@@ -156,7 +156,7 @@ function updateGeneratedBill(countFri, countSat, countSun, countNonWeekends, nor
 
 function nofunction(){};
 
-function print(){
+function onprint(){
     document.getElementById('datesWithPrice').style.display='none';
     document.getElementById('calculateAmount').style.display='none';
     document.getElementById('printPage').innerText='THANK YOU !';
