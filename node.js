@@ -1,334 +1,173 @@
-var audioPlay = new Audio('https://guessinggame-number.herokuapp.com/assets/beep.mp3');
-
-var moreChargedDaysList = ['Sat','Sun'];
-var bunchOfButtons = document.getElementsByClassName('days-button')
-for (const i of bunchOfButtons) {
-    i.addEventListener('mousedown',()=>{
-        audioPlay.play()
-        moreChargedDaysList.push(i.innerText[0]+i.innerText[1]+i.innerText[2]);
-        alert(`${i.innerHTML} added as weekends or more extra charged days.`);
-    });
-};
-var mainrecord=new Array();
-var monthdata={
-    'Jan':'01',
-    'Feb':'02',
-    'Mar':'03',
-    'Apr':'04',
-    'May':'05',
-    'Jun':'06',
-    'Jul':'07',
-    'Aug':'08',
-    'Sep':'09',
-    'Oct':'10',
-    'Nov':'11',
-    'Dec':'12'
-};
-
-var NR = 0;
-var WR = 0;
-
-// document.getElementById("calculateAmount").addEventListener('mousedown',()=>{
 function calcAmt(){
-    //document.getElementById("calculateAmount").style.boxShadow='5px 5px black';
 
-    audioPlay.play();
+    var fromdate = document.getElementById('fromdate').value;
+    var todate = document.getElementById('todate').value;
+
+    var fd = fromdate.split('-').reverse().join('-');
+    var td = todate.split('-').reverse().join('-');
+
+    var nfri = 0;
+    var nsat = 0;
+    var nsun = 0;
+    var nnonweekend = 0;
+
+    var normalrate = document.getElementById('normalrateEntry').value;
+    var weekendrate = document.getElementById('weekendrateEntry').value;
+
+    // console.log(fromdate, todate);
     
-    var fromdatevalue=document.getElementById('fromdate').value;
-    var todatevalue=document.getElementById('todate').value;
+    var dayslist = [];
 
-    var fdv=fromdatevalue.split('-')
-    fdv=fdv.reverse();
-    fdv=fdv.join('-');
+    var from_date = fromdate.split('-');
+    var to_date = todate.split('-');
 
-    var tdv=todatevalue.split('-')
-    tdv=tdv.reverse();
-    tdv=tdv.join('-');
+    var fromdate_inms = new Date(`${from_date[1]}-${from_date[2]}-${from_date[0]}`).getTime();
+    var todate_inms = new Date(`${to_date[1]}-${to_date[2]}-${to_date[0]}`).getTime();
 
-    fromdatevalue=fromdatevalue.split('-').reverse();
-    todatevalue=todatevalue.split('-').reverse();
+    // console.log(fromdate_inms, todate_inms)
 
-    const hugedate_dataset={1:31,2:28,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31}
+    var currentdate_inms = 0;
+    var i = 0;
 
-    var fromdatevalueyear=fromdatevalue[2];
-    var todatevalueyear=todatevalue[2];
-    
-    var fromdatevaluemonth=fromdatevalue[1];
-    var todatevaluemonth=todatevalue[1];
-    
-    var fromdatevalueday=fromdatevalue[0];
-    var todatevalueday=todatevalue[0];
-
-    var fromdatems=new Date(`${fromdatevaluemonth}-${fromdatevalueday}-${fromdatevalueyear}`);
-    fromdatems=parseInt(fromdatems.getTime());
-
-    var todatems=new Date(`${todatevaluemonth}-${todatevalueday}-${todatevalueyear}`);
-    todatems=parseInt(todatems.getTime());
-
-    if(fromdatems<todatems){
-
-        var instance_date='';
-
-        var i=0;
-        while(instance_date!=`${todatevalueday}-${todatevaluemonth}-${todatevalueyear}`){
-            var currms=new Date(fromdatems+i*24*3600*1000);
-            k=currms.toDateString().split(' ')[2]+'-'+currms.toDateString().split(' ')[1]+'-'+currms.toDateString().split(' ')[3].split('-')
-            k=k.split('-')
-            k[1]=monthdata[k[1]]
-            mainrecord.push(k.join('-'));
-            instance_date=k.join('-');
-            i+=1;
-        };
-
-        for (let tareekh = 0; tareekh < mainrecord.length; tareekh++) {
-            var instancedate = mainrecord[tareekh];
-            var instancedateis = mainrecord[tareekh].split('-').reverse().join('-');
-            instancedateis=new Date(instancedateis);
-            mainrecord[tareekh]=`${instancedate},${instancedateis.toDateString().split(' ')[0]}`;
-        };
-
-        var weekends=[];
-        var nonweekends=[];
-
-        var moreChargedDaysSets = new Set(moreChargedDaysList);
-
-        mainrecord.forEach(x => {
-            moreChargedDaysSets.forEach(instance => {
-                if(x.split(',')[1]==instance){
-                    weekends.push(x.split(',')[0]);
-                }
-                else
-                {
-                    nonweekends.push(x.split(',')[0]);
-                };
-            });
-        });
-
-        // console.table(weekends);
-
-        var nonweekendsSets = new Set(nonweekends);
-
-        nonweekends=[];
-
-        nonweekendsSets.forEach(element => {
-            nonweekends.push(element);
-        });
-
-        
-        weekends.forEach(element => {
-            var removeableindex = nonweekends.indexOf(element);
-            nonweekends.pop(removeableindex);
-        });
-
-        // var normalrate=parseFloat(document.getElementById('normalrateEntry').value);
-        // var weekendrate=parseFloat(document.getElementById('weekendrateEntry').value);
-
-        var normalrate=document.getElementById('normalrateEntry').value;
-        var weekendrate=document.getElementById('weekendrateEntry').value;
-
-        NR=normalrate;
-        WR=weekendrate;
-
-        var money=weekends.length*weekendrate+nonweekends.length*normalrate;
-        
-        function moneyCalculation(){
-            var message=`Pay ₹${money} to the Newspaper Boy.`;
-            document.getElementById('messageScreen').innerText=message;
-        };
-        moneyCalculation()
-
-        var alldatesString='';
-        var list_alldatesString = new Array();
-        var nfri=0;
-        var nsat=0;
-        var nsun=0;
-        var nregular=0;
-
-        mainrecord.forEach(z => {
-            var element=z.split(',');
-            alldatesString+=element[0]+' '+element[1]+'\n';
-            list_alldatesString.push(element[0]+' '+element[1]);
-        });
-
-        document.getElementById('datesWithPrice').style.height='auto';
-        document.getElementById('datesWithPrice').style.transition='1s';
-
-        document.getElementById('alldates').style.display='block';
-        document.getElementById('printPage').style.display='block';
-
-        list_alldatesString.forEach(i => {
-            if(i.endsWith('Sat')){
-                nsat+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${weekendrate}" value=${weekendrate} checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}  ||  Price: Rs. ${weekendrate}</label></div>`;
-            };
-            if(i.endsWith('Sun')){
-                nsun+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${weekendrate}" value=${weekendrate} checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}  ||  Price: Rs. ${weekendrate}</label></div>`;
-            };
-            if(i.endsWith('Fri')){
-                nfri+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${weekendrate}" value=${weekendrate} checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${weekendrate}" class="checkLabes">${i}  ||  Price: Rs. ${weekendrate}</label></div>`;
-            };
-            if(i.endsWith('Mon') | i.endsWith('Tue') | i.endsWith('Wed') | i.endsWith('Thu')){
-                nregular+=1;
-                document.getElementById('datesWithPrice').innerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i}  ||  Price: Rs. ${normalrate}" value=${normalrate} checked><label style="display: inline;" for="${i}  ||  Price: Rs. ${normalrate}" class="checkLabes">${i}  ||  Price: Rs. ${normalrate}</label></div>`;
-            };
-        });
-
-        // <input type="checkbox" value="" name="" class="chkbtn" checked>
-
-        // k=`<input type="checkbox" value="${i}+  ||  Price: Rs. ${weekendrate}\n" name="" class="chkbtn" checked>`
-
-        // document.getElementById('datesWithPrice').innerHTML=`<input type="checkbox" value="" name="" class="chkbtn" checked>`;
-
-        function showRecepit(){
-            var recepitData = `Total No. of regular days:- ${nregular} | Rs. ${nregular*normalrate}\nTotal No. of Friday(s):- ${nfri} | Rs. ${nfri*weekendrate}\nTotal No. of Saturday(s):- ${nsat} | Rs. ${nsat*weekendrate}\nTotal No. of Sunday(s):- ${nsun} | Rs. ${nsun*weekendrate}\n\nTotal: Rs. ${money}`;
-    
-            // document.getElementById('alldates').innerText=alldatesString;
-            document.getElementById('alldates').innerText=recepitData;
+    while (currentdate_inms<todate_inms) {
+        currentdate_inms = new Date(fromdate_inms+(24*3600000*i));
+        if(currentdate_inms.toString().split(' ')[0]=='Fri'){
+            pushthis = ['Fri',`${currentdate_inms.getDate()}-${currentdate_inms.getMonth()+1}-${currentdate_inms.getFullYear()}`,parseInt(weekendrate)];
+            dayslist.push(pushthis);
+            nfri++;
         }
-        showRecepit();
-
-        var listCheckBox = document.getElementsByClassName('chkbtn');
-
-        for (let e = 0; e < listCheckBox.length; e++) {
-            const element = listCheckBox[e];
-            element.onchange=function(){
-                if(element.checked){
-                    money+=parseInt(element.value);
-                    moneyCalculation();
-                    
-                    var nameDay = dayName(element.name);
-                    if(nameDay=='Fri'){
-                        nfri+=1;
-                    };
-                    if(nameDay=='Sat'){
-                        nsat+=1;
-                    };
-                    if(nameDay=='Sun'){
-                        nsun+=1;
-                    };
-                    if(nameDay=='Mon' | nameDay=='Tue' | nameDay=='Wed' | nameDay=='Thu'){
-                        nregular+=1;
-                    };
-                    showRecepit();
-                }
-                else{
-                    money-=parseInt(element.value);
-                    moneyCalculation();
-                    
-                    var nameDay = dayName(element.name);
-                    if(nameDay=='Fri'){
-                        nfri-=1;
-                    };
-                    if(nameDay=='Sat'){
-                        nsat-=1;
-                    };
-                    if(nameDay=='Sun'){
-                        nsun-=1;
-                    };
-                    if(nameDay=='Mon' | nameDay=='Tue' | nameDay=='Wed' | nameDay=='Thu'){
-                        nregular-=1;
-                    };
-                    showRecepit();
-                };
-            };
+        else if(currentdate_inms.toString().split(' ')[0]=='Sat'){
+            pushthis = ['Sat',`${currentdate_inms.getDate()}-${currentdate_inms.getMonth()+1}-${currentdate_inms.getFullYear()}`,parseInt(weekendrate)];
+            dayslist.push(pushthis);
+            nsat++;
+        }
+        else if(currentdate_inms.toString().split(' ')[0]=='Sun'){
+            pushthis = ['Sun',`${currentdate_inms.getDate()}-${currentdate_inms.getMonth()+1}-${currentdate_inms.getFullYear()}`,parseInt(weekendrate)];
+            dayslist.push(pushthis);
+            nsun++;
+        }
+        else{
+            pushthis = [currentdate_inms.toString().split(' ')[0],`${currentdate_inms.getDate()}-${currentdate_inms.getMonth()+1}-${currentdate_inms.getFullYear()}`,parseInt(normalrate)];
+            dayslist.push(pushthis);
+            nnonweekend++;
         };
-
-        function dayName(day){
-            var dayNameIs = day.split(' ',2)[1];
-            return dayNameIs;
-        };
-        
+        currentdate_inms = currentdate_inms.getTime();
+        i++;
     };
-    document.getElementById("calculateAmount").disabled=true;
-    document.getElementById('calculateAmount').innerText='Already Calculated';
-};
 
-function onPrint(){
+    var valueinnerHTML = '';
+    dayslist.forEach(i => {
+        valueinnerHTML+=`<div class="dateWithPriceCheck"><input style="display: inline;" class="chkbtn" type="checkbox" name="${i[1]} ${i[0]}" value=${i[2]} checked><label style="display: inline;" for="${i[1]}" class="checkLabes">${i[0]} ${i[1]} - Rs.${i[2]}</label></div>`;
+    });
 
-    audioPlay.play();
+    document.getElementById('datesWithPrice').innerHTML=valueinnerHTML;
+    // console.log(valueinnerHTML);
 
-    document.getElementById('frame-7').style.display='none';
-    document.getElementById('datesWithPrice').style.display='none';
-    document.getElementById('frame-8').style.display='none';
-
-    document.getElementById('calculateAmount').innerText='THANK YOU !';
-    document.getElementById('calculateAmount').style.cursor='none';
-
-    var fromdatevalue=document.getElementById('fromdate').value;
-    var todatevalue=document.getElementById('todate').value;
-
-    var fdv=fromdatevalue.split('-');
-    fdv=fdv.reverse();
-    fdv=fdv.join('-');
-
-    var tdv=todatevalue.split('-');
-    tdv=tdv.reverse();
-    tdv=tdv.join('-');
-
-    document.getElementById('span_1').style.width='49%';
-    document.getElementById('span_2').style.width='49%';
-    document.getElementById('span_1').innerText+=`${NR}`;
-    document.getElementById('span_2').innerText+=`${WR}`;
-    document.querySelector('#span_1').style.width='49%';
-    document.querySelector('#span_2').style.width='49%';
     document.getElementById('span_1').style.display='block';
+    document.getElementById('span_1').innerText=normalrate;
     document.getElementById('span_2').style.display='block';
-
-
-    document.getElementById('fromdate').style.display='none';
-    document.getElementById('todate').style.display='none';
-
-    document.getElementById('FROMDATE').innerText+=' '+fdv;
-    document.getElementById('TODATE').innerText+=' '+tdv;
-
+    document.getElementById('span_2').innerText=weekendrate;
     document.getElementById('normalrateEntry').style.display='none';
     document.getElementById('weekendrateEntry').style.display='none';
-    document.getElementById('reloadIcon').style.color='white';
-    document.getElementById('reloadIcon').style.background='white';
-    document.getElementById('reloadIcon').style.boxShadow='4px 4px 1.25px white';
 
-    document.getElementById('calculateAmount').style.boxShadow='none';
+    document.querySelector("#fromdate").style.display='none';
+    document.querySelector("#todate").style.display='none';
 
-    
-    setTimeout(() => {
-        html2canvas(document.getElementById('container'),{dpi:5000}).then(canvas=>{
-            // console.log(canvas.toDataURL('image/png'));
+    document.getElementById('FROMDATE').innerText+=fd;
+    document.getElementById('TODATE').innerText+=td;
+    document.getElementById('FROMDATE').style.display='block';
+    document.getElementById('TODATE').style.display='block';
 
-            var dateNameForFile = new Date();
-            dateNameForFile = `${parseInt(`${dateNameForFile.getTime()}`)}`;
+    document.getElementById('messageScreen').innerText=billGeneration(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
 
-            document.getElementById('frame-9').setAttribute('href',canvas.toDataURL('image/png'),1.0);
+    updateGeneratedBill(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate))
 
-            function downloadPNG(){
-                audioPlay.play();
-                nameDownloadingFile('png');
-            };
-            function downloadJPG(){
-                audioPlay.play();
-                nameDownloadingFile('jpg');
-            };
-            // function downloadPDF(){
-            //     audioPlay.play();
-            //     data = new jsPDF('p','mm','a4');
-            //     data.addImage(canvas.toDataURL('image/png'),'PNG',0,0);
-            //     data.save(`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.pdf`);
-            // };
+    var checkboxes = document.getElementsByClassName('chkbtn');
 
-            document.getElementById('frame-10').style.display='flex';
-            document.getElementById('reloadIcon').style.color='#000';
-            document.getElementById('reloadIcon').style.background='rgba(255, 0, 255, 0.2)';
-            document.getElementById('reloadIcon').style.boxShadow='4px 4px 1.25px rgba(255, 0, 255, 0.3)';
-
-            document.getElementById('jpgLogo').addEventListener('click',downloadJPG);
-            document.getElementById('pngLogo').addEventListener('click',downloadPNG);
-            // document.getElementById('pdfLogo').addEventListener('click',downloadPDF);
-
-            function nameDownloadingFile(tYpE){
-                document.getElementById('frame-9').setAttribute('download',`NewsPaperFee ${fdv} to ${tdv} ${dateNameForFile}.${tYpE}`);
-                document.getElementById('frame-9').click();
+    for (box of checkboxes) {
+        box.addEventListener('click',(e)=>{
+            console.log(e.target.checked);
+            if(e.target.checked==false){
+                if(e.target.name.split(' ')[1]=='Fri'){
+                    nfri--;
+                    document.getElementById('messageScreen').innerText=billGeneration(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                    updateGeneratedBill(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                }
+                else if(e.target.name.split(' ')[1]=='Sat'){
+                    nsat--;
+                    document.getElementById('messageScreen').innerText=billGeneration(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                    updateGeneratedBill(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                }
+                else if(e.target.name.split(' ')[1]=='Sun'){
+                    nsun--;
+                    document.getElementById('messageScreen').innerText=billGeneration(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                    updateGeneratedBill(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                }
+                else{
+                    nnonweekend--;
+                    document.getElementById('messageScreen').innerText=billGeneration(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                    updateGeneratedBill(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                };
+            }
+            else{
+                if(e.target.name.split(' ')[1]=='Fri'){
+                    nfri++;
+                    document.getElementById('messageScreen').innerText=billGeneration(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                    updateGeneratedBill(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                }
+                else if(e.target.name.split(' ')[1]=='Sat'){
+                    nsat++;
+                    document.getElementById('messageScreen').innerText=billGeneration(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                    updateGeneratedBill(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                }
+                else if(e.target.name.split(' ')[1]=='Sun'){
+                    nsun++;
+                    document.getElementById('messageScreen').innerText=billGeneration(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                    updateGeneratedBill(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                }
+                else{
+                    nnonweekend++;
+                    document.getElementById('messageScreen').innerText=billGeneration(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                    updateGeneratedBill(nfri, nsat, nsun, nnonweekend, parseInt(normalrate), parseInt(weekendrate));
+                };
             };
         });
-    }, 1500);
+    };
+
+    document.getElementById('calculateAmount').style.background='yellowgreen';
+    document.getElementById('calculateAmount').style.color='seagreen';
+    document.getElementById('calculateAmount').style.boxShadow='none';
+    document.getElementById('calculateAmount').innerText='Already Calculated';
+    document.getElementById('calculateAmount').setAttribute('onclick',"nofunction()");
+    document.getElementById('span_1').classList.toggle('showRATE');
+    document.getElementById('span_2').classList.toggle('showRATE');
+};
+
+function billGeneration(countFri, countSat, countSun, countNonWeekends, normal_rate, weekend_rate){
+    var statement = `Pay Rs.${((countFri+countSat+countSun)*weekend_rate)+(countNonWeekends*normal_rate)} to the Newspaper Boy.`
+    return statement;
+};
+
+function updateGeneratedBill(countFri, countSat, countSun, countNonWeekends, normal_rate, weekend_rate){
+    var updatedStatement = `Total No. of regular days:- ${countNonWeekends}\nTotal No. of Friday(s):- ${countFri}\nTotal No. of Saturdays(s):- ${countSat}\nTotal No. of Sunday(s):- ${countSun}\n\nTotal: Rs.${((countFri+countSat+countSun)*weekend_rate)+(countNonWeekends*normal_rate)}`;
+
+    document.getElementById('alldates').innerText=updatedStatement;
+};
+
+function nofunction(){};
+
+function print(){
+    document.getElementById('datesWithPrice').style.display='none';
+    document.getElementById('calculateAmount').style.display='none';
+    document.getElementById('printPage').innerText='THANK YOU !';
+    document.getElementById('printPage').setAttribute('onclick',"nofunction()");
+    document.getElementById('reloadIcon').classList.toggle('hideRefresh');
+
+    setTimeout(() => {
+        html2canvas(document.getElementById('container'),{dpi:300}).then(canvas=>{
+            document.getElementById('frame-9').setAttribute('href',`${canvas.toDataURL('image/jpg')}`);
+            document.getElementById('frame-9').click();
+            document.getElementById('reloadIcon').classList.toggle('hideRefresh');
+        })
+    }, 800);
 };

@@ -13,7 +13,7 @@
 
 #container{
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     background: white;
     display: flex;
     align-items: center;
@@ -43,12 +43,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+
+.spans2{
+    display: none !important;
 }
 
 #frame-3{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: column;
+    /* border: 1px solid red; */
 }
 
 .dates{
@@ -67,7 +75,7 @@
 
 .rateInputs{
     font-size: 3vw;
-    width: 49%;
+    /* width: 100%; */
     border: 0;
     background: aqua;
     font-family: 'Times New Roman', Arial;
@@ -75,12 +83,13 @@
     outline: none;
     text-align: center;
     border-radius: 20px;
+    margin: 1% 0;
 }
 
 .spans2{
     display: block;
-    font-size: 3vw;
-    width: 0%;
+    /* font-size: 3vw; */
+    /* width: 0%; */
     border: 0;
     background: aqua;
     font-family: 'Times New Roman', Arial;
@@ -88,6 +97,9 @@
     outline: none;
     text-align: center;
     border-radius: 20px;
+    font-size: 1.35pc;
+    padding: 2% 0;
+    margin: 2% 0;
 }
 
 .rateInputs::placeholder{
@@ -132,6 +144,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    display: none;
 }
 
 .days-button{
@@ -202,7 +215,7 @@
 #datesWithPrice{
     margin-top: 2%;
     width: 100%;
-    height: 0vh;
+    /* height: 0vh; */
     font-size: 2vw;
     color: black;
     font-family: Arial, Helvetica, sans-serif;
@@ -216,12 +229,17 @@
     background: whitesmoke;
 }
 
-.dateWithPriceCheck{
-    /* width: 10%; */
+/* .dateWithPriceCheck{
+    width: 10%;
     padding: 0.5% 0.5%;
     background: whitesmoke;
     display: flex;
     align-items: center;
+} */
+
+.dateWithPriceCheck{
+    padding: 0.8% 0;
+    padding-left: 1.5%;
 }
 
 .checkLabes{
@@ -229,9 +247,9 @@
 }
 
 .chkbtn{
-    margin-top: 2%;
-    margin-left: 2%;
+    margin: 1.2% 2%;
     cursor: pointer;
+    transform: scale(1.8);
 }
 
 #datesWithPrice:focus{
@@ -409,4 +427,21 @@
 #calculateAmount:active{
     box-shadow: none;
     transform: translateX(5px) translateY(5px);
+}
+
+.spandate{
+    /* border: 1px solid #000; */
+    width: 100% !important;
+    margin: 1% 0;
+}
+
+.showRATE{
+    display: block !important;
+    width: 100%;
+    font-size: 24pt;
+    font-weight: normal;
+}
+
+.hideRefresh{
+    display: none !important;
 }

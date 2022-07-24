@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Newspaper Fee Calculator</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script> -->
     <script src="https://kit.fontawesome.com/477be79e6e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -23,13 +23,13 @@
                 <span class="spans2 less700" id="span_2"></span>
             </div>
             <div class="childFrames" id="frame-3">
-                <div id="frame-3-1">
+                <div id="frame-3-1" class="spandate">
                     <span class="spans" id="FROMDATE">From:&nbsp;</span>
-                    <input class="dates less700" type="date" id="fromdate" date-formart="dd-mm-yyyy" required>
+                    <input class="dates less700" type="date" id="fromdate" date-format="dd-mm-yyyy" required>
                 </div>
-                <div id="frame-3-2">
+                <div id="frame-3-2" class="spandate">
                     <span class="spans" id="TODATE">To:&nbsp;</span>
-                    <input class="dates less700" type="date" id="todate" date-formart="dd-mm-yyyy" required>
+                    <input class="dates less700" type="date" id="todate" date-format="dd-mm-yyyy" required>
                 </div>
             </div>
             <div class="childFrames" id="frame-7">
@@ -55,7 +55,7 @@
             </div>
             <div class="childFrames" id="frame-8">
                 <!-- <button id="printPage" onclick="onPrint()">P R I N T</button> -->
-                <button id="printPage" onclick="onPrint()">GENERATE RECEPIT</button>
+                <button id="printPage" onclick="print()">GENERATE RECEPIT</button>
             </div>
             <div id="frame-10" class="childFrames">
                 <!-- <img src="images/pnglogo.png" class="logos" alt="PNG LOGO" id="pngLogo">
@@ -66,9 +66,9 @@
 				<i class="fas fa-file-image logos" id="jpgLogo">&nbsp;&nbsp;Download JPG</i>
             </div>
             <i class="fa-solid fa-arrow-rotate-right" onclick="window.location.reload()" id="reloadIcon"></i>
-            <a href="" id="frame-9"></a>
+            <a href="" id="frame-9" download="Bill.png"></a>
         </div>
     </div>
 </body>
-<script src="node.js" defer></script>
+<script src="node2.js" defer></script>
 </html>
